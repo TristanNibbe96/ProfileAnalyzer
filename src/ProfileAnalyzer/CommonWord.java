@@ -2,8 +2,6 @@ package ProfileAnalyzer;
 
 public class CommonWord implements Comparable{
     public int count;
-    public String word;
-
 
     @Override
     public int compareTo(Object o) {
@@ -14,5 +12,6 @@ public class CommonWord implements Comparable{
 
         return other.count - this.count;
     }
-}
 
+
+}
