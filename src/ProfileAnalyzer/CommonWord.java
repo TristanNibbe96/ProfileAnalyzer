@@ -6,6 +6,13 @@ public class CommonWord implements Comparable{
 
 
 
+    public String toString(){
+        String stringVal = "";
+
+        stringVal += word + ": " + count;
+        return stringVal;
+    }
+
     public boolean equals(Object obj){
         boolean equal = false;
 
