@@ -5,6 +5,14 @@ public class CommonWord implements Comparable{
     public String word;
 
 
+    public CommonWord(String word){
+        count = 1;
+        this.word = word;
+    }
+
+    public void incrementCount(){
+        count++;
+    }
 
     public String toString(){
         String stringVal = "";
