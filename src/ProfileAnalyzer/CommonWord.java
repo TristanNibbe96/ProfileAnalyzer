@@ -20,6 +20,14 @@ public class CommonWord implements Comparable{
         return stringVal;
     }
 
+    public String getWord(){
+        return word;
+    }
+
+    public int getCount(){
+        return count;
+    }
+
     @Override
     public boolean equals(Object obj){
         boolean equal = false;
