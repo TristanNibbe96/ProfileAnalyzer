@@ -1,9 +1,8 @@
 package ProfileAnalyzer;
 
 public class CommonWord implements Comparable{
-    public int count;
-    public String word;
-
+    private int count;
+    private String word;
 
     public CommonWord(String word){
         count = 1;
@@ -21,6 +20,7 @@ public class CommonWord implements Comparable{
         return stringVal;
     }
 
+    @Override
     public boolean equals(Object obj){
         boolean equal = false;
 
@@ -31,7 +31,6 @@ public class CommonWord implements Comparable{
                 equal = true;
             }
         }
-
 
         return equal;
     }
