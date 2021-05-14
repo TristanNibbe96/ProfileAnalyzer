@@ -1,3 +1,5 @@
+package ProfileAnalyzer;
+
 import ProfileAnalyzer.Analyzer;
 import ProfileAnalyzer.Parser;
 
@@ -15,7 +17,13 @@ public class Main {
         File directoryPath = new File(directory + "\\Reference_Profiles");
         String contents[] = directoryPath.list();
 
+        for(String file: contents) {
+            HashSet<String> parsedProfile = parser.parseProfile(file);
 
+            analyzer.analyzeProfile(parser.parseProfile(file));
+        }
+
+        analyzer.printCommonWords(3);
 
     }
 }
