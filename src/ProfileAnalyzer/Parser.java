@@ -48,7 +48,11 @@ public class Parser {
     }
 
     private String importProfile(String path){
-        return "";
+        File file = new File(path);
+        String profileText = "";
+
+
+        return profileText;
     }
 
     private String processProfile(String rawProfile){
