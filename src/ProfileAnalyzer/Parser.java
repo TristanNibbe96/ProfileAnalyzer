@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 
 public class Parser {
 
@@ -51,6 +53,16 @@ public class Parser {
         File file = new File(path);
         String profileText = "";
 
+        try {
+            PDDocument document = PDDocument.load(file);
+            PDFTextStripper pdfStripper = new PDFTextStripper();
+
+            profileText = pdfStripper.getText(document);
+            document.close();
+        }
+        catch(IOException e){
+            System.out.println("ERROR: Profile Not Found");
+        }
 
         return profileText;
     }
