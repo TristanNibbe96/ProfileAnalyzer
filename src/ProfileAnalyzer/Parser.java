@@ -1,6 +1,6 @@
 package ProfileAnalyzer;
 
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +22,17 @@ public class Parser {
     }
 
     public void setUpIrrelevantWords() throws FileNotFoundException{
+        File irrelevantWordsFile = new File(directory + "\\IrrelevantWords.txt");
+        BufferedReader br = new BufferedReader(new FileReader(irrelevantWordsFile));
 
+        try {
+            String word;
+            while ((word = br.readLine()) != null)
+                irrelevantWords.add(word);
+        }
+        catch (IOException e){
+            System.out.println("exceptionIO");
+        }
     }
 
     public void analyzeProfile(){
