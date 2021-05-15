@@ -35,9 +35,6 @@ public class Parser {
         }
     }
 
-    public void analyzeProfile(){
-
-    }
 
     public HashSet<String> parseProfile(String fileName){
 
