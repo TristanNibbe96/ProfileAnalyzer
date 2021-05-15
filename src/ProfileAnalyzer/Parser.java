@@ -37,8 +37,32 @@ public class Parser {
 
 
     public HashSet<String> parseProfile(String fileName){
+        String path = directory + "\\" + "Reference_Profiles" + "\\" + fileName;
+
+        String profile = importProfile(path);
+        String processedProfile = processProfile(profile);
+        HashSet<String> choppedProfile = segmentProfile(processedProfile);
+        removeIrrelevantWords(choppedProfile);
+
+        return choppedProfile;
+    }
+
+    private String importProfile(String path){
+        return "";
+    }
+
+    private String processProfile(String rawProfile){
+        return "";
+    }
+
+    private HashSet<String> segmentProfile(String profile){
 
         return new HashSet<>();
     }
+
+    private void removeIrrelevantWords(HashSet<String> profile){
+
+    }
+
 
 }
