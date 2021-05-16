@@ -72,6 +72,7 @@ public class Parser {
 
         processedProfile = processedProfile.replaceAll("[\r|\n|\\-|.|,|/|_|·]", " ");
         processedProfile = processedProfile.replace("\u00a0","");
+        processedProfile = processedProfile.replaceAll("[\s]{2,}"," ");
 
         return processedProfile;
     }
