@@ -70,6 +70,7 @@ public class Parser {
     private String processProfile(String rawProfile){
         String processedProfile = rawProfile.replaceAll("[\\d|·|(|)]|&nbsp", "");
 
+        processedProfile = processedProfile.replaceAll("[\r|\n|\\-|.|,|/|_|·]", " ");
 
 
         return processedProfile;
