@@ -68,7 +68,11 @@ public class Parser {
     }
 
     private String processProfile(String rawProfile){
-        return "";
+        String processedProfile = rawProfile.replaceAll("[\\d|·|(|)]|&nbsp", "");
+
+
+
+        return processedProfile;
     }
 
     private HashSet<String> segmentProfile(String profile){
