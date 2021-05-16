@@ -71,7 +71,7 @@ public class Parser {
         String processedProfile = rawProfile.replaceAll("[\\d|·|(|)]|&nbsp", "");
 
         processedProfile = processedProfile.replaceAll("[\r|\n|\\-|.|,|/|_|·]", " ");
-
+        processedProfile = processedProfile.replace("\u00a0","");
 
         return processedProfile;
     }
