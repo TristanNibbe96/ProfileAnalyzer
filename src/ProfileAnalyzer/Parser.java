@@ -84,7 +84,9 @@ public class Parser {
     }
 
     private void removeIrrelevantWords(HashSet<String> profile){
-
+        for(String s: irrelevantWords) {
+            profile.remove(s);
+        }
     }
 
 
