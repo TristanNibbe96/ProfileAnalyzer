@@ -43,10 +43,10 @@ public class Parser {
 
         String profile = importProfile(path);
         String processedProfile = processProfile(profile);
-        HashSet<String> choppedProfile = segmentProfile(processedProfile);
-        removeIrrelevantWords(choppedProfile);
+        HashSet<String> segmentedProfile = segmentProfile(processedProfile);
+        removeIrrelevantWords(segmentedProfile);
 
-        return choppedProfile;
+        return segmentedProfile;
     }
 
     private String importProfile(String path){
