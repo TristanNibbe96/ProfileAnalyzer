@@ -2,6 +2,7 @@ package ProfileAnalyzer;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -79,8 +80,13 @@ public class Parser {
     }
 
     private HashSet<String> segmentProfile(String profile){
+        String[] delimitedProfile = profile.split(" ");
+        List<String> profileList = new ArrayList<>(Arrays.asList(delimitedProfile));
+        HashSet<String> segmentedProfile = new HashSet<>();
 
-        return new HashSet<>();
+
+
+        return segmentedProfile;
     }
 
     private void removeIrrelevantWords(HashSet<String> profile){
