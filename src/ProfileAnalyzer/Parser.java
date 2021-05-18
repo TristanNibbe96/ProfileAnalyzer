@@ -84,7 +84,9 @@ public class Parser {
         List<String> profileList = new ArrayList<>(Arrays.asList(delimitedProfile));
         HashSet<String> segmentedProfile = new HashSet<>();
 
-
+        for(String s: profileList){
+            segmentedProfile.add(s);
+        }
 
         return segmentedProfile;
     }
