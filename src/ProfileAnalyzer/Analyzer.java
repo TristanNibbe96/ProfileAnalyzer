@@ -23,7 +23,11 @@ public class Analyzer {
     }
 
     private  void processNewProfile(HashSet<String> profile){
+        for (String s: profile){
+            CommonWord word = new CommonWord(s);
 
+
+        }
     }
 
     public void printCommonWords(int limit){
