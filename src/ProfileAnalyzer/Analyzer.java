@@ -15,7 +15,11 @@ public class Analyzer {
     }
 
     private void setupNewCommonWords(HashSet<String> profile){
+        commonWords = new LinkedList<>();
 
+        for(String s: profile){
+            commonWords.add(new CommonWord(s));
+        }
     }
 
     private  void processNewProfile(HashSet<String> profile){
