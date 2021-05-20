@@ -26,7 +26,12 @@ public class Analyzer {
         for (String s: profile){
             CommonWord word = new CommonWord(s);
 
-
+            if(commonWords.contains(word)){
+                CommonWord oldWord = commonWords.get(commonWords.indexOf(word));
+                oldWord.incrementCount();
+            }else{
+                commonWords.add(new CommonWord(s));
+            }
         }
     }
 
