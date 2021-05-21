@@ -36,6 +36,11 @@ public class Analyzer {
     }
 
     public void printCommonWords(int limit){
-
+        commonWords.sort(null);
+        for (CommonWord word: commonWords){
+            if(word.getCount() >= limit) {
+                System.out.println(word.toString());
+            }
+        }
     }
 }
