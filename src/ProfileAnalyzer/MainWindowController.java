@@ -18,7 +18,15 @@ public class MainWindowController {
     private MenuItem AnalyzeButton;
 
     @FXML
+    private MenuItem OpenOptionsButton;
+
+    @FXML
     private TextArea CommonWordsTextArea;
+
+    @FXML
+    void OpenOptions(ActionEvent event) {
+
+    }
 
     @FXML
     void AnalyzeProfile(ActionEvent event) {
