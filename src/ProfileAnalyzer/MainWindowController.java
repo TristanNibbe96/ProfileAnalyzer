@@ -2,8 +2,10 @@ package ProfileAnalyzer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.util.HashSet;
@@ -19,6 +21,9 @@ public class MainWindowController {
 
     @FXML
     private MenuItem OpenOptionsButton;
+
+    @FXML
+    private AnchorPane ProfileSelectorPane;
 
     @FXML
     private TextArea CommonWordsTextArea;
@@ -47,4 +52,7 @@ public class MainWindowController {
         }
     }
 
+    void loadProfiles(){
+        ProfileSelectorPane.getChildren().add(new Button("Click me"));
+    }
 }
