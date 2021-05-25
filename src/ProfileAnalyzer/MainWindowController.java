@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 
 public class MainWindowController {
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads";
@@ -29,7 +30,13 @@ public class MainWindowController {
 
             analyzer.analyzeProfile(parser.parseProfile(file));
         }
-        analyzer.printCommonWords(3);
+        printCommonWords(analyzer.getCommonWords(3));
+    }
+
+    void printCommonWords(List<String> commonWords){
+        for(String s: commonWords){
+            CommonWordsTextArea.appendText(s + "\n");
+        }
     }
 
 }

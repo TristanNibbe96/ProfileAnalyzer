@@ -1,7 +1,9 @@
 package ProfileAnalyzer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Analyzer {
     private LinkedList<CommonWord> commonWords;
@@ -35,12 +37,17 @@ public class Analyzer {
         }
     }
 
-    public void printCommonWords(int limit){
+    public List<String> getCommonWords(int limit){
         commonWords.sort(null);
+
+        List<String> commonWordsString = new ArrayList<>();
+
         for (CommonWord word: commonWords){
             if(word.getCount() >= limit) {
-                System.out.println(word.toString());
+                commonWordsString.add(word.toString());
             }
         }
+
+        return commonWordsString;
     }
 }
