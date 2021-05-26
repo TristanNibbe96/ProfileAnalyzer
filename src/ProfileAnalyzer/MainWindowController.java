@@ -20,10 +20,10 @@ public class MainWindowController {
 
     String[] profileFiles;
     Boolean profilesLoaded = false;
+    CheckBox[] profileCheckboxes;
 
     @FXML
     private Button AnalyzeButton;
-
 
     @FXML
     private MenuItem OpenOptionsButton;
@@ -46,24 +46,31 @@ public class MainWindowController {
     void LoadProfiles(ActionEvent event) {
         File directoryPath = new File(directory + "\\Reference_Profiles");
         profileFiles = directoryPath.list();
+        ProfileSelectorPane.getChildren().clear();
+        profileCheckboxes = new CheckBox[profileFiles.length];
 
-        for (String profile: profileFiles){
-            ProfileSelectorPane.getChildren().add(new CheckBox(profile));
+        for (int i = 0; i < profileFiles.length; i++){
+            CheckBox profileCheckBox = new CheckBox(profileFiles[i]);
+            profileCheckBox.setSelected(true);
+            profileCheckboxes[i] = profileCheckBox;
+            ProfileSelectorPane.getChildren().add(profileCheckBox);
         }
         AnalyzeButton.disableProperty().setValue(false);
     }
 
     @FXML
     void AnalyzeProfile(ActionEvent event) {
-        for(String file: profileFiles) {
-            HashSet<String> parsedProfile = parser.parseProfile(file);
-
-            analyzer.analyzeProfile(parser.parseProfile(file));
+        for(int i = 0; i < profileFiles.length; i++) {
+            if(profileCheckboxes[i].isSelected()) {
+                HashSet<String> parsedProfile = parser.parseProfile(profileFiles[i]);
+                analyzer.analyzeProfile(parser.parseProfile(profileFiles[i]));
+            }
         }
         printCommonWords(analyzer.getCommonWords(3));
     }
 
     void printCommonWords(List<String> commonWords){
+        CommonWordsTextArea.clear();
         for(String s: commonWords){
             CommonWordsTextArea.appendText(s + "\n");
         }
