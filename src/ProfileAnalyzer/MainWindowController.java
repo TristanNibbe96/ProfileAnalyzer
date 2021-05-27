@@ -35,9 +35,6 @@ public class MainWindowController {
     private ChoiceBox<Integer> LimitSelector;
 
     @FXML
-    private MenuItem OpenOptionsButton;
-
-    @FXML
     private VBox ProfileSelectorPane;
 
     @FXML
@@ -46,10 +43,6 @@ public class MainWindowController {
     @FXML
     private Button LoadProfilesButton;
 
-    @FXML
-    void OpenOptions(ActionEvent event) {
-
-    }
 
     @FXML
     void LoadProfiles(ActionEvent event) {
@@ -94,8 +87,7 @@ public class MainWindowController {
     void setLimitListener(){
         LimitSelector.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 
-            public void changed(ObservableValue ov, Number value, Number new_value)
-            {
+            public void changed(ObservableValue ov, Number value, Number new_value) {
                 limit = LimitSelector.getItems().get(new_value.intValue());
                 AnalyzeButton.disableProperty().setValue(false);
             }
@@ -116,6 +108,4 @@ public class MainWindowController {
         );
         LimitSelector.setTooltip(tooltip);
     }
-
-
 }
