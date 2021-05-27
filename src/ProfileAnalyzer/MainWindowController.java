@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -22,6 +23,10 @@ public class MainWindowController {
 
     String[] profileFiles;
     CheckBox[] profileCheckboxes;
+
+    public void initialize() {
+        addTooltipToLimitField();
+    }
 
     @FXML
     private Button AnalyzeButton;
@@ -102,6 +107,14 @@ public class MainWindowController {
         for(String s: commonWords){
             CommonWordsTextArea.appendText(s + "\n");
         }
+    }
+
+    void addTooltipToLimitField(){
+        final Tooltip tooltip = new Tooltip();
+        tooltip.setText(
+                "Minimum number of profiles a word should appear in before it can be counted as a \"common word\"."
+        );
+        LimitSelector.setTooltip(tooltip);
     }
 
 
