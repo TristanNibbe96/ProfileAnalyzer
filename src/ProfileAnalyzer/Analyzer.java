@@ -24,6 +24,10 @@ public class Analyzer {
         }
     }
 
+    public void clearCommonWords(){
+        commonWords = null;
+    }
+
     private  void processNewProfile(HashSet<String> profile){
         for (String s: profile){
             CommonWord word = new CommonWord(s);

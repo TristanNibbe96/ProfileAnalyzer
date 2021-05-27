@@ -64,6 +64,8 @@ public class MainWindowController {
 
     @FXML
     void AnalyzeProfile(ActionEvent event) {
+        analyzer.clearCommonWords();
+
         for(int i = 0; i < profileFiles.length; i++) {
             if(profileCheckboxes[i].isSelected()) {
                 HashSet<String> parsedProfile = parser.parseProfile(profileFiles[i]);
@@ -89,7 +91,7 @@ public class MainWindowController {
 
             public void changed(ObservableValue ov, Number value, Number new_value)
             {
-                limit = new_value.intValue() + 1;
+                limit = LimitSelector.getItems().get(new_value.intValue());
                 AnalyzeButton.disableProperty().setValue(false);
             }
         });
