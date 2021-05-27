@@ -1,19 +1,21 @@
 package ProfileAnalyzer;
 
-import com.sun.javafx.collections.ObservableListWrapper;
-import javafx.collections.ObservableListBase;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class MainWindowController {
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads";
+    int limit = 0;
 
     Parser parser = new Parser(directory);
     Analyzer analyzer = new Analyzer();
@@ -25,7 +27,7 @@ public class MainWindowController {
     private Button AnalyzeButton;
 
     @FXML
-    private ChoiceBox<?> LimitSelector;
+    private ChoiceBox<Integer> LimitSelector;
 
     @FXML
     private MenuItem OpenOptionsButton;
@@ -57,7 +59,6 @@ public class MainWindowController {
             profileCheckboxes[i] = profileCheckBox;
             ProfileSelectorPane.getChildren().add(profileCheckBox);
         }
-        AnalyzeButton.disableProperty().setValue(false);
         loadLimitChoices();
     }
 
@@ -69,14 +70,29 @@ public class MainWindowController {
                 analyzer.analyzeProfile(parser.parseProfile(profileFiles[i]));
             }
         }
-        printCommonWords(analyzer.getCommonWords(3));
+        printCommonWords(analyzer.getCommonWords(limit));
     }
 
     void loadLimitChoices(){
-        //ObservableListBase<Integer> temp = new ObservableListWrapper<Integer>();
+        ObservableList<Integer> limiterChoices = FXCollections.observableArrayList();
+
         for(int i = 0; i < profileCheckboxes.length; i++){
-          //  LimitSelector.setItems(temp);
+          limiterChoices.add(i+1);
         }
+
+        LimitSelector.setItems(limiterChoices);
+        setLimitListener();
+    }
+
+    void setLimitListener(){
+        LimitSelector.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+
+            public void changed(ObservableValue ov, Number value, Number new_value)
+            {
+                limit = new_value.intValue() + 1;
+                AnalyzeButton.disableProperty().setValue(false);
+            }
+        });
     }
 
     void printCommonWords(List<String> commonWords){
@@ -85,4 +101,6 @@ public class MainWindowController {
             CommonWordsTextArea.appendText(s + "\n");
         }
     }
+
+
 }

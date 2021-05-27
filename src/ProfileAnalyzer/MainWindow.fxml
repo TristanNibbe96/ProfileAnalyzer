@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="963.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ProfileAnalyzer.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProfileAnalyzer.MainWindowController">
    <children>
       <MenuBar prefHeight="26.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -41,7 +41,7 @@
                               <Button fx:id="LoadProfilesButton" mnemonicParsing="false" onAction="#LoadProfiles" text="Load Profiles" />
                               <Button fx:id="AnalyzeButton" disable="true" mnemonicParsing="false" onAction="#AnalyzeProfile" text="Analyze Profiles" />
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="35.0" text="Limit:" textAlignment="CENTER" />
-                              <ChoiceBox prefHeight="26.0" prefWidth="47.0" />
+                              <ChoiceBox fx:id="LimitSelector" prefHeight="26.0" prefWidth="47.0" />
                            </children>
                         </HBox>
                      </children>
