@@ -1,14 +1,14 @@
 package ProfileAnalyzer;
 
+import com.sun.javafx.collections.ObservableListWrapper;
+import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -19,11 +19,13 @@ public class MainWindowController {
     Analyzer analyzer = new Analyzer();
 
     String[] profileFiles;
-    Boolean profilesLoaded = false;
     CheckBox[] profileCheckboxes;
 
     @FXML
     private Button AnalyzeButton;
+
+    @FXML
+    private ChoiceBox<?> LimitSelector;
 
     @FXML
     private MenuItem OpenOptionsButton;
@@ -56,6 +58,7 @@ public class MainWindowController {
             ProfileSelectorPane.getChildren().add(profileCheckBox);
         }
         AnalyzeButton.disableProperty().setValue(false);
+        loadLimitChoices();
     }
 
     @FXML
@@ -67,6 +70,13 @@ public class MainWindowController {
             }
         }
         printCommonWords(analyzer.getCommonWords(3));
+    }
+
+    void loadLimitChoices(){
+        //ObservableListBase<Integer> temp = new ObservableListWrapper<Integer>();
+        for(int i = 0; i < profileCheckboxes.length; i++){
+          //  LimitSelector.setItems(temp);
+        }
     }
 
     void printCommonWords(List<String> commonWords){
