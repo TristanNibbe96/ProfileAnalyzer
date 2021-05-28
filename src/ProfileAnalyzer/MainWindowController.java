@@ -134,6 +134,10 @@ public class MainWindowController {
         }
     }
 
+    void reportError(String error){
+        ErrorIndicator.setText(error);
+    }
+
     void addTooltipToLimitField(){
         final Tooltip tooltip = new Tooltip();
         tooltip.setText(
