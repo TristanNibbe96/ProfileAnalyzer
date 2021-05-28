@@ -12,9 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class MainWindowController {
     @FXML
@@ -83,6 +81,7 @@ public class MainWindowController {
             if(profileCheckboxes[i].isSelected()) {
                 HashSet<String> parsedProfile = parser.parseProfile(profileFiles[i]);
                 analyzer.analyzeProfile(parser.parseProfile(profileFiles[i]));
+                //TODO above line unecessary?
             }
         }
         printCommonWords(analyzer.getCommonWords(limit));
@@ -94,10 +93,17 @@ public class MainWindowController {
     }
 
     String[] cleanProfileFiles(File file){
-        List<String> profileList =  Arrays.asList(file.list());
-        profileList.remove("IrrelevantWords.txt");
+        String[] fullFileList = file.list();
+        String[] profileArr = new String[fullFileList.length - 1];
 
-        return (String[]) profileList.toArray();
+        for(int i = 0, j = 0; i < fullFileList.length; i++){
+            if(!fullFileList[i].equals("IrrelevantWords.txt")) {
+                profileArr[j] = fullFileList[i];
+                j++;
+            }
+        }
+
+        return  profileArr;
     }
 
     void loadLimitChoices(){
