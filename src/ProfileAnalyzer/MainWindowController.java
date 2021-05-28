@@ -80,8 +80,7 @@ public class MainWindowController {
         for(int i = 0; i < profileFiles.length; i++) {
             if(profileCheckboxes[i].isSelected()) {
                 HashSet<String> parsedProfile = parser.parseProfile(profileFiles[i]);
-                analyzer.analyzeProfile(parser.parseProfile(profileFiles[i]));
-                //TODO above line unecessary?
+                analyzer.analyzeProfile(parsedProfile);
             }
         }
         printCommonWords(analyzer.getCommonWords(limit));
