@@ -4,11 +4,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -30,7 +30,7 @@ public class MainWindowController {
     @FXML
     private Button DirectoryButton;
     @FXML
-    private Label ErrorIndicator;
+    private TextField StatusIndicator;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles";
     int limit = 0;
@@ -44,6 +44,7 @@ public class MainWindowController {
     public void initialize() {
         addTooltipToLimitField();
         loadDirectoryField();
+        checkForIrrelevantWordsFile();
     }
 
     @FXML
@@ -86,6 +87,15 @@ public class MainWindowController {
             }
         }
         printCommonWords(analyzer.getCommonWords(limit));
+    }
+
+    void checkForIrrelevantWordsFile(){
+        try {
+            File file = new File(directory + "IrrelevantWords.txt");
+        }catch (NullPointerException e){
+            reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
+        }
+
     }
 
     void loadDirectoryField(){
@@ -135,7 +145,7 @@ public class MainWindowController {
     }
 
     void reportError(String error){
-        ErrorIndicator.setText(error);
+        StatusIndicator.setText(error);
     }
 
     void addTooltipToLimitField(){
