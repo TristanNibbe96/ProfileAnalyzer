@@ -9,13 +9,29 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 
 public class MainWindowController {
-    String directory = "C:\\Users\\Tristan_Nibbe\\Downloads";
+    @FXML
+    private Button AnalyzeButton;
+    @FXML
+    private ChoiceBox<Integer> LimitSelector;
+    @FXML
+    private VBox ProfileSelectorPane;
+    @FXML
+    private TextArea CommonWordsTextArea;
+    @FXML
+    private Button LoadProfilesButton;
+    @FXML
+    private TextField DirectoryField;
+    @FXML
+    private Button DirectoryButton;
+
+    String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles";
     int limit = 0;
 
     Parser parser = new Parser(directory);
@@ -26,37 +42,25 @@ public class MainWindowController {
 
     public void initialize() {
         addTooltipToLimitField();
+        loadDirectoryField();
     }
 
     @FXML
-    private Button AnalyzeButton;
-
-    @FXML
-    private ChoiceBox<Integer> LimitSelector;
-
-    @FXML
-    private VBox ProfileSelectorPane;
-
-    @FXML
-    private TextArea CommonWordsTextArea;
-
-    @FXML
-    private Button LoadProfilesButton;
-
-    @FXML
-    private TextField DirectoryField;
-
-    @FXML
-    private Button DirectoryButton;
-
-    @FXML
     void OpenDirectoryExplorer(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(DirectoryButton.getScene().getWindow());
 
+        String path = file.getAbsolutePath();
+        String fileName = file.getName();
+
+        directory = file.getAbsolutePath().substring(0,path.length()-fileName.length());
+        loadDirectoryField();
     }
 
     @FXML
     void LoadProfiles(ActionEvent event) {
-        File directoryPath = new File(directory + "\\Reference_Profiles");
+        File directoryPath = new File(directory);
         profileFiles = directoryPath.list();
         ProfileSelectorPane.getChildren().clear();
         profileCheckboxes = new CheckBox[profileFiles.length];
@@ -81,6 +85,11 @@ public class MainWindowController {
             }
         }
         printCommonWords(analyzer.getCommonWords(limit));
+    }
+
+    void loadDirectoryField(){
+        DirectoryField.clear();
+        DirectoryField.appendText(directory);
     }
 
     void loadLimitChoices(){
