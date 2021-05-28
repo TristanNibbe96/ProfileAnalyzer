@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class MainWindowController {
     @FXML
     void LoadProfiles(ActionEvent event) {
         File directoryPath = new File(directory);
-        profileFiles = directoryPath.list();
+        profileFiles = cleanProfileFiles(directoryPath);
         ProfileSelectorPane.getChildren().clear();
         profileCheckboxes = new CheckBox[profileFiles.length];
 
@@ -90,6 +91,13 @@ public class MainWindowController {
     void loadDirectoryField(){
         DirectoryField.clear();
         DirectoryField.appendText(directory);
+    }
+
+    String[] cleanProfileFiles(File file){
+        List<String> profileList =  Arrays.asList(file.list());
+        profileList.remove("IrrelevantWords.txt");
+
+        return (String[]) profileList.toArray();
     }
 
     void loadLimitChoices(){
