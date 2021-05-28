@@ -102,7 +102,6 @@ public class MainWindowController {
                 j++;
             }
         }
-
         return  profileArr;
     }
 
