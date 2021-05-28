@@ -43,6 +43,16 @@ public class MainWindowController {
     @FXML
     private Button LoadProfilesButton;
 
+    @FXML
+    private TextField DirectoryField;
+
+    @FXML
+    private Button DirectoryButton;
+
+    @FXML
+    void OpenDirectoryExplorer(ActionEvent event) {
+
+    }
 
     @FXML
     void LoadProfiles(ActionEvent event) {
