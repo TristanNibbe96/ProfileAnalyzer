@@ -29,6 +29,8 @@ public class MainWindowController {
     private TextField DirectoryField;
     @FXML
     private Button DirectoryButton;
+    @FXML
+    private Label ErrorIndicator;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles";
     int limit = 0;
