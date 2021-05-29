@@ -32,7 +32,7 @@ public class MainWindowController {
     @FXML
     private TextField StatusIndicator;
 
-    String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles";
+    String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles\\";
     int limit = 0;
 
     Parser parser = new Parser(directory);
@@ -90,11 +90,10 @@ public class MainWindowController {
     }
 
     void checkForIrrelevantWordsFile(){
-        try {
-            File file = new File(directory + "IrrelevantWords.txt");
-        }catch (NullPointerException e){
-            reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
-        }
+            File file = new File(directory + "\\" + "IrrelevantWords.txt");
+            if(!file.exists()) {
+                reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
+            }
 
     }
 

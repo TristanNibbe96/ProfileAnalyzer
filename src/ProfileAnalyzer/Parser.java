@@ -40,7 +40,7 @@ public class Parser {
 
 
     public HashSet<String> parseProfile(String fileName){
-        String path = directory + "\\" + fileName;
+        String path = directory + fileName;
 
         String profile = importProfile(path);
         String processedProfile = processProfile(profile);
