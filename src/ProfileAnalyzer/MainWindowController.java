@@ -58,6 +58,8 @@ public class MainWindowController {
 
         directory = file.getAbsolutePath().substring(0,path.length()-fileName.length());
         loadDirectoryField();
+
+        //TODO allow user to type in path if desired
     }
 
     @FXML
