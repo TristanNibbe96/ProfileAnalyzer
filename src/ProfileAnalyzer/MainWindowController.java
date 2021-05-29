@@ -93,6 +93,10 @@ public class MainWindowController {
             File file = new File(directory + "\\" + "IrrelevantWords.txt");
             if(!file.exists()) {
                 reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
+                disableAnalysis();
+            }else {
+                reportSuccess("IrrelevantWords.txt successfully detected in directory");
+                enableAnalysis();
             }
 
     }
@@ -100,6 +104,7 @@ public class MainWindowController {
     void loadDirectoryField(){
         DirectoryField.clear();
         DirectoryField.appendText(directory);
+        checkForIrrelevantWordsFile();
     }
 
     String[] cleanProfileFiles(File file){
@@ -145,6 +150,19 @@ public class MainWindowController {
 
     void reportError(String error){
         StatusIndicator.setText(error);
+    }
+
+    void reportSuccess(String message){
+        StatusIndicator.setText(message);
+    }
+
+    void disableAnalysis(){
+        LoadProfilesButton.disableProperty().setValue(true);
+        AnalyzeButton.disableProperty().setValue(true);
+    }
+
+    void enableAnalysis(){
+        LoadProfilesButton.disableProperty().setValue(false);
     }
 
     void addTooltipToLimitField(){
