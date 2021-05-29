@@ -78,6 +78,7 @@ public class MainWindowController {
 
     @FXML
     void AnalyzeProfile(ActionEvent event) {
+        //TODO analysis not returning expected results
         analyzer.clearCommonWords();
 
         for(int i = 0; i < profileFiles.length; i++) {
@@ -105,6 +106,7 @@ public class MainWindowController {
         DirectoryField.clear();
         DirectoryField.appendText(directory);
         checkForIrrelevantWordsFile();
+        //TODO verify that there are files in the directory besides the irrelevant words file
     }
 
     String[] cleanProfileFiles(File file){
@@ -122,6 +124,7 @@ public class MainWindowController {
 
     void loadLimitChoices(){
         ObservableList<Integer> limiterChoices = FXCollections.observableArrayList();
+        LimitSelector.disableProperty().setValue(false);
 
         for(int i = 0; i < profileCheckboxes.length; i++){
           limiterChoices.add(i+1);
@@ -159,6 +162,7 @@ public class MainWindowController {
     void disableAnalysis(){
         LoadProfilesButton.disableProperty().setValue(true);
         AnalyzeButton.disableProperty().setValue(true);
+        LimitSelector.disableProperty().setValue(true);
     }
 
     void enableAnalysis(){
