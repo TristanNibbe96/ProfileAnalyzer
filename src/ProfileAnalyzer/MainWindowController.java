@@ -125,10 +125,20 @@ public class MainWindowController {
 
     boolean checkTypeOfProfiles(){
         File file = new File(directory);
-        boolean validDirectory = false;
+        boolean directoryValid = true;
 
+        try {
+            for(String fileName: file.list()){
+                if(!fileName.endsWith(".pdf") || !fileName.endsWith(".txt")){
+                    directoryValid = false;
+                }
+            }
+        }catch (NullPointerException e){
+            directoryValid = false;
+            reportError("ERROR: Null pointer to profile directory");
+        }
 
-        return validDirectory;
+        return directoryValid;
     }
 
     boolean checkForIrrelevantWordsFile(){
