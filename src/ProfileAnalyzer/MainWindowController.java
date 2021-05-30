@@ -30,7 +30,7 @@ public class MainWindowController {
     @FXML
     private Button DirectoryButton;
     @FXML
-    private TextField StatusIndicator;
+    private TextArea StatusIndicator;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles\\";
     int limit = 0;
@@ -100,10 +100,10 @@ public class MainWindowController {
 
     void checkIfDirectoryIsValid(){
 
-        if(!checkNumberOfProfiles() || !checkForIrrelevantWordsFile() || !checkTypeOfProfiles()){
-            disableAnalysis();
-        }else {
+        if(checkNumberOfProfiles() && checkForIrrelevantWordsFile() && checkTypeOfProfiles()){
             enableAnalysis();
+        }else {
+            disableAnalysis();
         }
 
     }
