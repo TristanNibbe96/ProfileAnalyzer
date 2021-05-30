@@ -44,7 +44,6 @@ public class MainWindowController {
     public void initialize() {
         addTooltipToLimitField();
         loadDirectoryField();
-        checkForIrrelevantWordsFile();
     }
 
     @FXML
@@ -58,8 +57,6 @@ public class MainWindowController {
 
         directory = file.getAbsolutePath().substring(0,path.length()-fileName.length());
         loadDirectoryField();
-
-        //TODO allow user to type in path if desired
     }
 
     @FXML
@@ -99,7 +96,7 @@ public class MainWindowController {
     }
 
     void checkIfDirectoryIsValid(){
-
+        StatusIndicator.clear();
         if(checkNumberOfProfiles() && checkForIrrelevantWordsFile() && checkTypeOfProfiles()){
             enableAnalysis();
         }else {
@@ -115,6 +112,7 @@ public class MainWindowController {
         try {
             if (file.list().length > 1) {
                 directoryValid = true;
+                reportSuccess("Correct number of profiles detected");
             }
         }catch (NullPointerException e){
             reportError("ERROR: Null pointer to profile directory");
@@ -129,13 +127,20 @@ public class MainWindowController {
 
         try {
             for(String fileName: file.list()){
-                if(!fileName.endsWith(".pdf") || !fileName.endsWith(".txt")){
+                String fileExtension = fileName.substring(fileName.length() - 4, fileName.length());
+
+                if(!fileExtension.equals(".pdf") && !fileExtension.equals(".txt")){
                     directoryValid = false;
+                    reportError("ERROR: incorrect file type in directory");
                 }
             }
         }catch (NullPointerException e){
             directoryValid = false;
             reportError("ERROR: Null pointer to profile directory");
+        }
+
+        if(directoryValid){
+            reportSuccess("all files in directory are of a compatible type");
         }
 
         return directoryValid;
@@ -205,11 +210,11 @@ public class MainWindowController {
     }
 
     void reportError(String error){
-        StatusIndicator.setText(error);
+        StatusIndicator.appendText(error + "\n");
     }
 
     void reportSuccess(String message){
-        StatusIndicator.setText(message);
+        StatusIndicator.appendText(message + "\n");
     }
 
     void disableAnalysis(){
