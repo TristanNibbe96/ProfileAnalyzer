@@ -57,7 +57,7 @@
                                  <children>
                                     <HBox prefHeight="11.0" prefWidth="284.0" spacing="5.0">
                                        <children>
-                                          <TextField fx:id="DirectoryField" prefHeight="26.0" prefWidth="467.0" />
+                                          <TextField fx:id="DirectoryField" onAction="#SetDirectoryFromField" prefHeight="26.0" prefWidth="467.0" />
                                           <Button fx:id="DirectoryButton" mnemonicParsing="false" onAction="#OpenDirectoryExplorer" text="..." />
                                        </children>
                                     </HBox>

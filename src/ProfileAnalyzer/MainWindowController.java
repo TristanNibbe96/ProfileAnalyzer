@@ -92,22 +92,63 @@ public class MainWindowController {
         printCommonWords(analyzer.getCommonWords(limit));
     }
 
-    void checkForIrrelevantWordsFile(){
-            File file = new File(directory + "\\" + "IrrelevantWords.txt");
-            if(!file.exists()) {
-                reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
-                disableAnalysis();
-            }else {
-                reportSuccess("IrrelevantWords.txt successfully detected in directory");
-                enableAnalysis();
-            }
+    @FXML
+    void SetDirectoryFromField(ActionEvent event) {
+        directory = DirectoryField.getText();
+        checkIfDirectoryIsValid();
+    }
 
+    void checkIfDirectoryIsValid(){
+
+        if(!checkNumberOfProfiles() || !checkForIrrelevantWordsFile() || !checkTypeOfProfiles()){
+            disableAnalysis();
+        }else {
+            enableAnalysis();
+        }
+
+    }
+
+    boolean checkNumberOfProfiles(){
+        File file = new File(directory);
+        boolean directoryValid = false;
+
+        try {
+            if (file.list().length > 1) {
+                directoryValid = true;
+            }
+        }catch (NullPointerException e){
+            reportError("ERROR: Null pointer to profile directory");
+        }
+
+        return directoryValid;
+    }
+
+    boolean checkTypeOfProfiles(){
+        File file = new File(directory);
+        boolean validDirectory = false;
+
+
+        return validDirectory;
+    }
+
+    boolean checkForIrrelevantWordsFile(){
+        File file = new File(directory + "\\" + "IrrelevantWords.txt");
+        boolean directoryValid = false;
+
+        if(!file.exists()) {
+            reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
+        }else {
+            reportSuccess("IrrelevantWords.txt successfully detected in directory");
+            directoryValid = true;
+        }
+
+        return directoryValid;
     }
 
     void loadDirectoryField(){
         DirectoryField.clear();
         DirectoryField.appendText(directory);
-        checkForIrrelevantWordsFile();
+        checkIfDirectoryIsValid();
         //TODO verify that there are files in the directory besides the irrelevant words file
     }
 
