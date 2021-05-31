@@ -99,22 +99,22 @@ public class MainWindowController {
 
     @FXML
     void ExportCommonWords(ActionEvent event) {
-
+        //TODO enable export of common words
     }
 
     @FXML
     void RemoveCommonWords(ActionEvent event) {
-
+        //TODO enable deletion of common words
     }
 
     @FXML
     void RemoveIrrelevantWords(ActionEvent event) {
-
+        //TODO enable deletion of irrelevant words
     }
 
     @FXML
     void SaveIrrelevantWords(ActionEvent event) {
-
+        //TODO enable saving of irrelevant words
     }
 
 
@@ -173,8 +173,9 @@ public class MainWindowController {
         IrrelevantWordsDisplayArea.getChildren().clear();
         List<String> irrelevantWords = parser.getIrrelevantWords();
         for(String s: irrelevantWords){
-            CheckBox newCommonWord = new CheckBox(s);
-            CommonWordsDisplayArea.getChildren().add(newCommonWord);
+            CheckBox newIrrelevantWord = new CheckBox(s);
+            newIrrelevantWord.setSelected(true);
+            IrrelevantWordsDisplayArea.getChildren().add(newIrrelevantWord);
         }
     }
 
@@ -238,6 +239,7 @@ public class MainWindowController {
         CommonWordsDisplayArea.getChildren().clear();
         for(String s: commonWords){
             CheckBox newCommonWord = new CheckBox(s);
+            newCommonWord.setSelected(true);
             CommonWordsDisplayArea.getChildren().add(newCommonWord);
         }
     }
