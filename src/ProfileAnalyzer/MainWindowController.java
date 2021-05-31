@@ -197,7 +197,6 @@ public class MainWindowController {
         DirectoryField.clear();
         DirectoryField.appendText(directory);
         checkIfDirectoryIsValid();
-        //TODO verify that there are files in the directory besides the irrelevant words file
     }
 
     String[] cleanProfileFiles(File file){
