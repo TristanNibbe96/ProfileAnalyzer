@@ -10,8 +10,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 public class Parser {
 
-    List<String> irrelevantWords;
-    String directory;
+    private List<String> irrelevantWords;
+    private String directory;
 
     public Parser(String directory){
         this.directory = directory;
@@ -48,6 +48,10 @@ public class Parser {
         removeIrrelevantWords(segmentedProfile);
 
         return segmentedProfile;
+    }
+
+    public List<String> getIrrelevantWords(){
+        return irrelevantWords;
     }
 
     private String importProfile(String path){

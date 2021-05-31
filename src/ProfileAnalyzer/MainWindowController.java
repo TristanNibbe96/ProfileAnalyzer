@@ -169,6 +169,15 @@ public class MainWindowController {
         return directoryValid;
     }
 
+    void printIrrelevantWords(){
+        IrrelevantWordsDisplayArea.getChildren().clear();
+        List<String> irrelevantWords = parser.getIrrelevantWords();
+        for(String s: irrelevantWords){
+            CheckBox newCommonWord = new CheckBox(s);
+            CommonWordsDisplayArea.getChildren().add(newCommonWord);
+        }
+    }
+
     boolean checkForIrrelevantWordsFile(){
         File file = new File(directory + "\\" + "IrrelevantWords.txt");
         boolean directoryValid = false;
@@ -249,6 +258,7 @@ public class MainWindowController {
 
     void enableAnalysis(){
         LoadProfilesButton.disableProperty().setValue(false);
+        printIrrelevantWords();
     }
 
     void addTooltipToLimitField(){
