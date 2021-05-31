@@ -97,6 +97,27 @@ public class MainWindowController {
         checkIfDirectoryIsValid();
     }
 
+    @FXML
+    void ExportCommonWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void RemoveCommonWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void RemoveIrrelevantWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void SaveIrrelevantWords(ActionEvent event) {
+
+    }
+
+
     void checkIfDirectoryIsValid(){
         StatusIndicator.clear();
         if(checkNumberOfProfiles() && checkForIrrelevantWordsFile() && checkTypeOfProfiles()){
@@ -205,9 +226,10 @@ public class MainWindowController {
     }
 
     void printCommonWords(List<String> commonWords){
-        CommonWordsTextArea.clear();
+        CommonWordsDisplayArea.getChildren().clear();
         for(String s: commonWords){
-            CommonWordsTextArea.appendText(s + "\n");
+            CheckBox newCommonWord = new CheckBox(s);
+            CommonWordsDisplayArea.getChildren().add(newCommonWord);
         }
     }
 

@@ -43,10 +43,12 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
+                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="426.0" text="Irrelevant Words" textAlignment="CENTER" />
                                           <VBox fx:id="IrrelevantWordsDisplayArea" prefHeight="841.0" prefWidth="399.0" />
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                              <children>
-                                                <Button mnemonicParsing="false" text="Button" />
+                                                <Button mnemonicParsing="false" onAction="#RemoveIrrelevantWords" text="Remove Words" />
+                                                <Button layoutX="161.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveIrrelevantWords" text="Save Words" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -57,10 +59,12 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
+                                          <Label alignment="CENTER" prefHeight="18.0" prefWidth="243.0" text="Words In Common" textAlignment="CENTER" />
                                           <VBox fx:id="CommonWordsDisplayArea" prefHeight="805.0" prefWidth="238.0" />
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                              <children>
-                                                <Button mnemonicParsing="false" text="Button" />
+                                                <Button mnemonicParsing="false" onAction="#RemoveCommonWords" text="Remove Words" />
+                                                <Button layoutX="58.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExportCommonWords" text="Export Words" />
                                              </children>
                                           </HBox>
                                        </children>
