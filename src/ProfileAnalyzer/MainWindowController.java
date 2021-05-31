@@ -22,8 +22,6 @@ public class MainWindowController {
     @FXML
     private VBox ProfileSelectorPane;
     @FXML
-    private TextArea CommonWordsTextArea;
-    @FXML
     private Button LoadProfilesButton;
     @FXML
     private TextField DirectoryField;
@@ -31,6 +29,10 @@ public class MainWindowController {
     private Button DirectoryButton;
     @FXML
     private TextArea StatusIndicator;
+    @FXML
+    private VBox IrrelevantWordsDisplayArea;
+    @FXML
+    private VBox CommonWordsDisplayArea;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles\\";
     int limit = 0;
