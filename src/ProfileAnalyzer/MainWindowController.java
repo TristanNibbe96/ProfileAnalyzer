@@ -117,6 +117,25 @@ public class MainWindowController {
         //TODO enable saving of irrelevant words
     }
 
+    @FXML
+    void SelectAllCommonWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void SelectAllIrrelevantWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void DeselectAllCommonWords(ActionEvent event) {
+
+    }
+
+    @FXML
+    void DeselectAllIrrelevantWords(ActionEvent event) {
+
+    }
 
     void checkIfDirectoryIsValid(){
         StatusIndicator.clear();

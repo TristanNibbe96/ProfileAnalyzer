@@ -30,6 +30,7 @@ public class Analyzer {
 
     private  void processNewProfile(HashSet<String> profile){
         for (String s: profile){
+
             CommonWord word = new CommonWord(s);
 
             if(commonWords.contains(word)){

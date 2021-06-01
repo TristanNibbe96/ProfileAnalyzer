@@ -54,6 +54,8 @@
                                              <children>
                                                 <Button mnemonicParsing="false" onAction="#RemoveIrrelevantWords" text="Remove Words" />
                                                 <Button layoutX="161.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveIrrelevantWords" text="Save Words" />
+                                                <Button layoutX="224.0" layoutY="10.0" mnemonicParsing="false" onAction="#SelectAllIrrelevantWords" text="Select All" />
+                                                <Button layoutX="268.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeselectAllIrrelevantWords" text="Deselect All" />
                                              </children>
                                           </HBox>
                                        </children>
@@ -74,6 +76,8 @@
                                              <children>
                                                 <Button mnemonicParsing="false" onAction="#RemoveCommonWords" text="Remove Words" />
                                                 <Button layoutX="58.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExportCommonWords" text="Export Words" />
+                                                <Button mnemonicParsing="false" onAction="#SelectAllCommonWords" text="Select All" />
+                                                <Button mnemonicParsing="false" onAction="#DeselectAllCommonWords" text="Deselect All" />
                                              </children>
                                           </HBox>
                                        </children>
