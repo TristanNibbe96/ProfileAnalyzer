@@ -79,7 +79,6 @@ public class MainWindowController {
 
     @FXML
     void AnalyzeProfile(ActionEvent event) {
-        //TODO analysis not returning expected results
         analyzer.clearCommonWords();
 
         for(int i = 0; i < profileFiles.length; i++) {
@@ -278,6 +277,7 @@ public class MainWindowController {
 
     void enableAnalysis(){
         LoadProfilesButton.disableProperty().setValue(false);
+        parser.changeDirectory(directory);
         printIrrelevantWords();
     }
 

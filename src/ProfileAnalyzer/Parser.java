@@ -16,15 +16,15 @@ public class Parser {
     public Parser(String directory){
         this.directory = directory;
 
-        irrelevantWords = new ArrayList<>();
 
         try{setUpIrrelevantWords();}
         catch (FileNotFoundException e){
-            System.out.println("No File with irrelevant wprds fpund");
+            System.out.println("No File with irrelevant words fpund");
         }
     }
 
     public void setUpIrrelevantWords() throws FileNotFoundException{
+        irrelevantWords = new ArrayList<>();
         File irrelevantWordsFile = new File(directory + "\\IrrelevantWords.txt");
         BufferedReader br = new BufferedReader(new FileReader(irrelevantWordsFile));
 
@@ -34,7 +34,16 @@ public class Parser {
                 irrelevantWords.add(word);
         }
         catch (IOException e){
-            System.out.println("exceptionIO");
+            System.out.println("IOException");
+        }
+    }
+
+    public void changeDirectory(String directory){
+        this.directory = directory;
+
+        try{setUpIrrelevantWords();}
+        catch (FileNotFoundException e){
+            System.out.println("No File with irrelevant words fpund");
         }
     }
 
