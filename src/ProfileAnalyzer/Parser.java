@@ -54,6 +54,16 @@ public class Parser {
         return irrelevantWords;
     }
 
+    public void addWordsToIrrelevantList(List<String> wordsToAdd){
+        irrelevantWords.addAll(wordsToAdd);
+    }
+
+    public void removeWordsFromIrrelevantList(List<String> wordsToRemove){
+        for(String word: wordsToRemove){
+            irrelevantWords.remove(word);
+        }
+    }
+
     private String importProfile(String path){
         File file = new File(path);
         String profileText = "";
