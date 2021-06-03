@@ -111,6 +111,17 @@ public class MainWindowController {
     @FXML
     void RemoveIrrelevantWords(ActionEvent event) {
         //TODO enable deletion of irrelevant words
+        List<String> wordsToRemove = new ArrayList<>();
+        String[] irrelevantWords = (String[]) parser.getIrrelevantWords().toArray();
+
+        for(int i = 0; i < irrelevantWordsCheckboxes.length; i++){
+            if(irrelevantWordsCheckboxes[i].isSelected()){
+                wordsToRemove.add(irrelevantWords[i]);
+            }
+        }
+
+        parser.removeWordsFromIrrelevantList(wordsToRemove);
+        printIrrelevantWords();
     }
 
     @FXML
@@ -120,22 +131,30 @@ public class MainWindowController {
 
     @FXML
     void SelectAllCommonWords(ActionEvent event) {
-
+        for(CheckBox word: commonWordsCheckboxes){
+            word.setSelected(true);
+        }
     }
 
     @FXML
     void SelectAllIrrelevantWords(ActionEvent event) {
-
+        for(CheckBox word: irrelevantWordsCheckboxes){
+            word.setSelected(true);
+        }
     }
 
     @FXML
     void DeselectAllCommonWords(ActionEvent event) {
-
+        for(CheckBox word: commonWordsCheckboxes){
+            word.setSelected(false);
+        }
     }
 
     @FXML
     void DeselectAllIrrelevantWords(ActionEvent event) {
-
+        for(CheckBox word: irrelevantWordsCheckboxes){
+            word.setSelected(false);
+        }
     }
 
     void checkIfDirectoryIsValid(){
