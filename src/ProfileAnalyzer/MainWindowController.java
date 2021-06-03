@@ -42,6 +42,8 @@ public class MainWindowController {
 
     String[] profileFiles;
     CheckBox[] profileCheckboxes;
+    CheckBox[] commonWordsCheckboxes;
+    CheckBox[] irrelevantWordsCheckboxes;
 
     public void initialize() {
         addTooltipToLimitField();
@@ -190,10 +192,15 @@ public class MainWindowController {
     void printIrrelevantWords(){
         IrrelevantWordsDisplayArea.getChildren().clear();
         List<String> irrelevantWords = parser.getIrrelevantWords();
+        irrelevantWordsCheckboxes = new CheckBox[irrelevantWords.size()];
+
+        int i = 0;
         for(String s: irrelevantWords){
             CheckBox newIrrelevantWord = new CheckBox(s);
             newIrrelevantWord.setSelected(true);
             IrrelevantWordsDisplayArea.getChildren().add(newIrrelevantWord);
+            irrelevantWordsCheckboxes[i] = newIrrelevantWord;
+            i++;
         }
     }
 
@@ -254,10 +261,16 @@ public class MainWindowController {
 
     void printCommonWords(List<String> commonWords){
         CommonWordsDisplayArea.getChildren().clear();
+
+        commonWordsCheckboxes = new CheckBox[commonWords.size()];
+        int i = 0;
+
         for(String s: commonWords){
             CheckBox newCommonWord = new CheckBox(s);
             newCommonWord.setSelected(true);
             CommonWordsDisplayArea.getChildren().add(newCommonWord);
+            commonWordsCheckboxes[i] = newCommonWord;
+            i++;
         }
     }
 
