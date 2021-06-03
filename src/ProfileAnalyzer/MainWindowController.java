@@ -110,9 +110,8 @@ public class MainWindowController {
 
     @FXML
     void RemoveIrrelevantWords(ActionEvent event) {
-        //TODO enable deletion of irrelevant words
         List<String> wordsToRemove = new ArrayList<>();
-        String[] irrelevantWords = (String[]) parser.getIrrelevantWords().toArray();
+        String[] irrelevantWords = parser.getIrrelevantWords().toArray(new String[0]);
 
         for(int i = 0; i < irrelevantWordsCheckboxes.length; i++){
             if(irrelevantWordsCheckboxes[i].isSelected()){
