@@ -276,10 +276,10 @@ public class MainWindowController {
     }
 
     void toggleCommonWordsActions(boolean status){
-        RemoveCommonWordsButton.setDisable(status);
-        ExportCommonWordsButton.setDisable(status);
-        SelectCommonWordsButton.setDisable(status);
-        DeselectCommonWordsButton.setDisable(status);
+        RemoveCommonWordsButton.setDisable(!status);
+        ExportCommonWordsButton.setDisable(!status);
+        SelectCommonWordsButton.setDisable(!status);
+        DeselectCommonWordsButton.setDisable(!status);
     }
 
     void loadDirectoryField(){
