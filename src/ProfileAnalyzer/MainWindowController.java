@@ -106,6 +106,19 @@ public class MainWindowController {
     @FXML
     void RemoveCommonWords(ActionEvent event) {
         //TODO enable deletion of common words
+        List<String> wordsToRemove = new ArrayList<>();
+        String[] commonWords = analyzer.getCommonWords(limit).toArray(new String[0]);
+
+        for(int i = 0; i < commonWordsCheckboxes.length; i++){
+            if(commonWordsCheckboxes[i].isSelected()){
+                wordsToRemove.add(commonWords[i]);
+            }
+        }
+
+        parser.addWordsToIrrelevantList(wordsToRemove);
+        analyzer.removeWordsFromCommonWordsList(wordsToRemove);
+        printIrrelevantWords();
+        printCommonWords(analyzer.getCommonWords(limit));
     }
 
     @FXML
@@ -215,7 +228,6 @@ public class MainWindowController {
         int i = 0;
         for(String s: irrelevantWords){
             CheckBox newIrrelevantWord = new CheckBox(s);
-            newIrrelevantWord.setSelected(true);
             IrrelevantWordsDisplayArea.getChildren().add(newIrrelevantWord);
             irrelevantWordsCheckboxes[i] = newIrrelevantWord;
             i++;

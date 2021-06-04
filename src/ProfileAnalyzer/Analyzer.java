@@ -16,6 +16,12 @@ public class Analyzer {
         }
     }
 
+    public void removeWordsFromCommonWordsList(List<String> wordsToRemove){
+        for(String word: wordsToRemove){
+            commonWords.remove(word);
+        }
+    }
+
     private void setupNewCommonWords(HashSet<String> profile){
         commonWords = new LinkedList<>();
 
