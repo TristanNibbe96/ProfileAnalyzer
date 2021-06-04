@@ -41,6 +41,14 @@ public class MainWindowController {
     private Button SelectCommonWordsButton;
     @FXML
     private Button DeselectCommonWordsButton;
+    @FXML
+    private Button RemoveIrrelevantWordsButton;
+    @FXML
+    private Button SaveIrrelevantWordsButton;
+    @FXML
+    private Button SelectIrrelevantWordsButton;
+    @FXML
+    private Button DeselectIrrelevantWordsButton;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles\\";
     int limit = 0;

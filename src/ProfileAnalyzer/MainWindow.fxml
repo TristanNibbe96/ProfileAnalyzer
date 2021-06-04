@@ -52,10 +52,10 @@
                                           </ScrollPane>
                                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#RemoveIrrelevantWords" text="Remove Words" />
-                                                <Button layoutX="161.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveIrrelevantWords" text="Save Words" />
-                                                <Button layoutX="224.0" layoutY="10.0" mnemonicParsing="false" onAction="#SelectAllIrrelevantWords" text="Select All" />
-                                                <Button layoutX="268.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeselectAllIrrelevantWords" text="Deselect All" />
+                                                <Button fx:id="RemoveIrrelevantWordsButton" mnemonicParsing="false" onAction="#RemoveIrrelevantWords" text="Remove Words" />
+                                                <Button fx:id="SaveIrrelevantWordsButton" layoutX="161.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveIrrelevantWords" text="Save Words" />
+                                                <Button fx:id="SelectIrrelevantWordsButton" layoutX="224.0" layoutY="10.0" mnemonicParsing="false" onAction="#SelectAllIrrelevantWords" text="Select All" />
+                                                <Button fx:id="DeselectIrrelevantWordsButton" layoutX="268.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeselectAllIrrelevantWords" text="Deselect All" />
                                              </children>
                                           </HBox>
                                        </children>
