@@ -16,8 +16,8 @@ public class Analyzer {
         }
     }
 
-    public void removeWordsFromCommonWordsList(List<String> wordsToRemove){
-        for(String word: wordsToRemove){
+    public void removeWordsFromCommonWordsList(List<CommonWord> wordsToRemove){
+        for(CommonWord word: wordsToRemove){
             commonWords.remove(word);
         }
     }
@@ -46,6 +46,20 @@ public class Analyzer {
                 commonWords.add(new CommonWord(s));
             }
         }
+    }
+
+    public List<CommonWord> getRawCommonWords(int limit){
+        commonWords.sort(null);
+
+        List<CommonWord> commonWordsRaw = new ArrayList<>();
+
+        for (CommonWord word: commonWords){
+            if(word.getCount() >= limit) {
+                commonWordsRaw.add(word);
+            }
+        }
+
+        return commonWordsRaw;
     }
 
     public List<String> getCommonWords(int limit){

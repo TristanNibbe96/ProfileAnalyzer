@@ -105,18 +105,19 @@ public class MainWindowController {
 
     @FXML
     void RemoveCommonWords(ActionEvent event) {
-        //TODO enable deletion of common words
-        List<String> wordsToRemove = new ArrayList<>();
-        String[] commonWords = analyzer.getCommonWords(limit).toArray(new String[0]);
+        List<CommonWord> commonWordsToRemove = new ArrayList<>();
+        List<String> irrelevantWordsToAdd = new ArrayList<>();
+        CommonWord[] commonWords = analyzer.getRawCommonWords(limit).toArray(new CommonWord[0]);
 
         for(int i = 0; i < commonWordsCheckboxes.length; i++){
             if(commonWordsCheckboxes[i].isSelected()){
-                wordsToRemove.add(commonWords[i]);
+                commonWordsToRemove.add(commonWords[i]);
+                irrelevantWordsToAdd.add(commonWords[i].getWord());
             }
         }
 
-        parser.addWordsToIrrelevantList(wordsToRemove);
-        analyzer.removeWordsFromCommonWordsList(wordsToRemove);
+        parser.addWordsToIrrelevantList(irrelevantWordsToAdd);
+        analyzer.removeWordsFromCommonWordsList(commonWordsToRemove);
         printIrrelevantWords();
         printCommonWords(analyzer.getCommonWords(limit));
     }
