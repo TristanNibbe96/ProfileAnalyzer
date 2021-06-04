@@ -189,7 +189,7 @@ public class MainWindowController {
 
     void checkIfDirectoryIsValid(){
         StatusIndicator.clear();
-        if(checkNumberOfProfiles() && checkForIrrelevantWordsFile() && checkTypeOfProfiles()){
+        if(checkForIrrelevantWordsFile() && checkNumberOfProfiles() && checkTypeOfProfiles()){
             enableAnalysis();
         }else {
             disableAnalysis();
@@ -259,6 +259,7 @@ public class MainWindowController {
 
         if(!file.exists()) {
             toggleIrrelevantWordsActions(false);
+            IrrelevantWordsDisplayArea.getChildren().clear();
             reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
         }else {
             reportSuccess("IrrelevantWords.txt successfully detected in directory");
