@@ -64,6 +64,7 @@ public class MainWindowController {
     public void initialize() {
         addTooltipToLimitField();
         loadDirectoryField();
+        toggleCommonWordsActions(false);
     }
 
     @FXML
@@ -239,6 +240,7 @@ public class MainWindowController {
 
     void printIrrelevantWords(){
         IrrelevantWordsDisplayArea.getChildren().clear();
+        toggleIrrelevantWordsActions(true);
         List<String> irrelevantWords = parser.getIrrelevantWords();
         irrelevantWordsCheckboxes = new CheckBox[irrelevantWords.size()];
 
@@ -256,7 +258,7 @@ public class MainWindowController {
         boolean directoryValid = false;
 
         if(!file.exists()) {
-
+            toggleIrrelevantWordsActions(false);
             reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
         }else {
             reportSuccess("IrrelevantWords.txt successfully detected in directory");
@@ -264,6 +266,20 @@ public class MainWindowController {
         }
 
         return directoryValid;
+    }
+
+    void toggleIrrelevantWordsActions(boolean status){
+        RemoveIrrelevantWordsButton.setDisable(!status);
+        SaveIrrelevantWordsButton.setDisable(!status);
+        SelectIrrelevantWordsButton.setDisable(!status);
+        DeselectIrrelevantWordsButton.setDisable(!status);
+    }
+
+    void toggleCommonWordsActions(boolean status){
+        RemoveCommonWordsButton.setDisable(status);
+        ExportCommonWordsButton.setDisable(status);
+        SelectCommonWordsButton.setDisable(status);
+        DeselectCommonWordsButton.setDisable(status);
     }
 
     void loadDirectoryField(){
@@ -309,7 +325,7 @@ public class MainWindowController {
 
     void printCommonWords(List<String> commonWords){
         CommonWordsDisplayArea.getChildren().clear();
-
+        toggleCommonWordsActions(true);
         commonWordsCheckboxes = new CheckBox[commonWords.size()];
         int i = 0;
 
@@ -334,6 +350,7 @@ public class MainWindowController {
         LoadProfilesButton.disableProperty().setValue(true);
         AnalyzeButton.disableProperty().setValue(true);
         LimitSelector.disableProperty().setValue(true);
+        toggleCommonWordsActions(false);
     }
 
     void enableAnalysis(){
