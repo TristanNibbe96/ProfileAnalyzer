@@ -33,6 +33,14 @@ public class MainWindowController {
     private VBox IrrelevantWordsDisplayArea;
     @FXML
     private VBox CommonWordsDisplayArea;
+    @FXML
+    private Button RemoveCommonWordsButton;
+    @FXML
+    private Button ExportCommonWordsButton;
+    @FXML
+    private Button SelectCommonWordsButton;
+    @FXML
+    private Button DeselectCommonWordsButton;
 
     String directory = "C:\\Users\\Tristan_Nibbe\\Downloads\\Reference_Profiles\\";
     int limit = 0;
@@ -240,6 +248,7 @@ public class MainWindowController {
         boolean directoryValid = false;
 
         if(!file.exists()) {
+
             reportError("ERROR: please ensure IrrelevantWords.txt is in your reference profiles directory and the directory is correctly configured in settings");
         }else {
             reportSuccess("IrrelevantWords.txt successfully detected in directory");
