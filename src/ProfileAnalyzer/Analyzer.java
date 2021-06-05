@@ -7,6 +7,11 @@ import java.util.List;
 
 public class Analyzer {
     private LinkedList<CommonWord> commonWords;
+    private CommonWordsAccessor wordsAccessor;
+
+    public Analyzer(){
+        wordsAccessor = new CommonWordsAccessor();
+    }
 
     public void analyzeProfile(HashSet<String> profile){
         if (commonWords == null){
@@ -20,6 +25,10 @@ public class Analyzer {
         for(CommonWord word: wordsToRemove){
             commonWords.remove(word);
         }
+    }
+
+    public void saveCommonWords(String directory, int limit){
+        wordsAccessor.saveCommonWords(getStringValueOfCommonWords(limit), directory);
     }
 
     private void setupNewCommonWords(HashSet<String> profile){
@@ -46,6 +55,20 @@ public class Analyzer {
                 commonWords.add(new CommonWord(s));
             }
         }
+    }
+
+    public List<String> getStringValueOfCommonWords(int limit){
+        commonWords.sort(null);
+
+        List<String> commonWordsRaw = new ArrayList<>();
+
+        for (CommonWord word: commonWords){
+            if(word.getCount() >= limit) {
+                commonWordsRaw.add(word.getWord());
+            }
+        }
+
+        return commonWordsRaw;
     }
 
     public List<CommonWord> getRawCommonWords(int limit){

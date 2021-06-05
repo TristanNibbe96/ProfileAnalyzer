@@ -118,6 +118,7 @@ public class MainWindowController {
     @FXML
     void ExportCommonWords(ActionEvent event) {
         //TODO enable export of common words
+        analyzer.saveCommonWords(directory, limit);
     }
 
     @FXML
