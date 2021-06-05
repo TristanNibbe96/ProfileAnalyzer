@@ -12,39 +12,26 @@ public class Parser {
 
     private List<String> irrelevantWords;
     private String directory;
+    private final IrrelevantWordsAccessor wordsAccessor;
 
     public Parser(String directory){
         this.directory = directory;
-
-
-        try{setUpIrrelevantWords();}
-        catch (FileNotFoundException e){
-            System.out.println("No File with irrelevant words fpund");
-        }
+        this.wordsAccessor = new IrrelevantWordsAccessor();
+        setUpIrrelevantWords();
     }
 
-    public void setUpIrrelevantWords() throws FileNotFoundException{
-        irrelevantWords = new ArrayList<>();
-        File irrelevantWordsFile = new File(directory + "\\IrrelevantWords.txt");
-        BufferedReader br = new BufferedReader(new FileReader(irrelevantWordsFile));
-
-        try {
-            String word;
-            while ((word = br.readLine()) != null)
-                irrelevantWords.add(word);
+    public void setUpIrrelevantWords() {
+        try{
+            irrelevantWords = wordsAccessor.loadIrrelevantWords(directory);
         }
-        catch (IOException e){
-            System.out.println("IOException");
+        catch (FileNotFoundException e){
+            System.out.println("No File with irrelevant words fpund");
         }
     }
 
     public void changeDirectory(String directory){
         this.directory = directory;
-
-        try{setUpIrrelevantWords();}
-        catch (FileNotFoundException e){
-            System.out.println("No File with irrelevant words fpund");
-        }
+        setUpIrrelevantWords();
     }
 
 
