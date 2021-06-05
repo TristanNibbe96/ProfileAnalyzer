@@ -157,6 +157,7 @@ public class MainWindowController {
     @FXML
     void SaveIrrelevantWords(ActionEvent event) {
         //TODO enable saving of irrelevant words
+        parser.saveIrrelevantWords();
     }
 
     @FXML

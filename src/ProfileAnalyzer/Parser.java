@@ -60,6 +60,10 @@ public class Parser {
         }
     }
 
+    public void saveIrrelevantWords(){
+        wordsAccessor.saveIrrelevantWords(irrelevantWords,directory);
+    }
+
     private String importProfile(String path){
         File file = new File(path);
         String profileText = "";
