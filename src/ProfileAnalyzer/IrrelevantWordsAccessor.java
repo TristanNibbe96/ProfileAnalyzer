@@ -9,7 +9,7 @@ public class IrrelevantWordsAccessor {
         try {
             FileWriter myWriter = new FileWriter(directory + "irrelevantWords.txt");
             for (String word: words){
-                myWriter.write(word);
+                myWriter.write(word + "\n");
             }
             myWriter.close();
         } catch (IOException e) {
