@@ -8,8 +8,8 @@ import java.util.List;
 
 public class CommonWordsAccessor {
 
-    public void saveCommonWords(List<String> words, String directory){
-        createCommonWordsFile(directory);
+    public boolean saveCommonWords(List<String> words, String directory){
+        boolean successfullySaved = true;
 
         try {
             FileWriter myWriter = new FileWriter(directory + "commonWords.txt");
@@ -19,21 +19,26 @@ public class CommonWordsAccessor {
             myWriter.close();
         } catch (IOException e) {
             System.out.println("Unable to write to irrelevantWords file.");
+            successfullySaved = false;
         }
+
+        return successfullySaved;
     }
 
-    private void createCommonWordsFile(String directory){
+    public boolean createCommonWordsFile(String directory){
+        boolean succesfullyCreated = false;
+
         try {
             File myObj = new File(directory + "commonWords.txt");
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
+                succesfullyCreated = true;
             }
         } catch (IOException e) {
             System.out.println("Unable to create commonWords.txt");
             e.printStackTrace();
         }
+
+        return succesfullyCreated;
     }
 }
 

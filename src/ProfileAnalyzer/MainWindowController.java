@@ -117,8 +117,16 @@ public class MainWindowController {
 
     @FXML
     void ExportCommonWords(ActionEvent event) {
-        //TODO enable export of common words
-        analyzer.saveCommonWords(directory, limit);
+        if(analyzer.createNewCommonWordsFile(directory)){
+            reportSuccess("Created new commonWords.txt file");
+        }else {
+            reportSuccess("Overwriting old commonWords.txt file");
+        }
+        if (analyzer.saveCommonWords(directory,limit)){
+            reportSuccess("Successfully saved commonWords.txt");
+        }else {
+            reportError("Unable to save commonWords.txt");
+        }
     }
 
     @FXML

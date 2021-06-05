@@ -27,8 +27,12 @@ public class Analyzer {
         }
     }
 
-    public void saveCommonWords(String directory, int limit){
-        wordsAccessor.saveCommonWords(getStringValueOfCommonWords(limit), directory);
+    public boolean saveCommonWords(String directory, int limit){
+        return wordsAccessor.saveCommonWords(getStringValueOfCommonWords(limit), directory);
+    }
+
+    public boolean createNewCommonWordsFile(String directoy){
+        return wordsAccessor.createCommonWordsFile(directoy);
     }
 
     private void setupNewCommonWords(HashSet<String> profile){
