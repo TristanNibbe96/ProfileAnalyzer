@@ -56,8 +56,8 @@ public class MainWindowController {
     Parser parser = new Parser(directory);
     Analyzer analyzer = new Analyzer();
 
-    String[] profileFiles;
-    CheckBox[] profileCheckboxes;
+    List<String> profileFiles;
+    List<CheckBox> profileCheckboxes;
     CheckBox[] commonWordsCheckboxes;
     CheckBox[] irrelevantWordsCheckboxes;
 
@@ -85,12 +85,12 @@ public class MainWindowController {
         File directoryPath = new File(directory);
         profileFiles = cleanProfileFiles(directoryPath);
         ProfileSelectorPane.getChildren().clear();
-        profileCheckboxes = new CheckBox[profileFiles.length];
+        profileCheckboxes = new ArrayList<>();
 
-        for (int i = 0; i < profileFiles.length; i++){
-            CheckBox profileCheckBox = new CheckBox(profileFiles[i]);
+        for (String profileFile: profileFiles){
+            CheckBox profileCheckBox = new CheckBox(profileFile);
             profileCheckBox.setSelected(true);
-            profileCheckboxes[i] = profileCheckBox;
+            profileCheckboxes.add(profileCheckBox);
             ProfileSelectorPane.getChildren().add(profileCheckBox);
         }
         loadLimitChoices();
@@ -100,9 +100,9 @@ public class MainWindowController {
     void AnalyzeProfile(ActionEvent event) {
         analyzer.clearCommonWords();
 
-        for(int i = 0; i < profileFiles.length; i++) {
-            if(profileCheckboxes[i].isSelected()) {
-                HashSet<String> parsedProfile = parser.parseProfile(profileFiles[i]);
+        for(CheckBox profileCheckbox: profileCheckboxes) {
+            if(profileCheckbox.isSelected()) {
+                HashSet<String> parsedProfile = parser.parseProfile(profileCheckbox.getText());
                 analyzer.analyzeProfile(parsedProfile);
             }
         }
@@ -203,13 +203,16 @@ public class MainWindowController {
     }
 
     boolean checkNumberOfProfiles(){
-        File file = new File(directory);
+        File directoryFile = new File(directory);
         boolean directoryValid = false;
 
         try {
-            if (file.list().length > 1) {
-                directoryValid = true;
-                reportSuccess("Correct number of profiles detected");
+            for(String file: directoryFile.list()){
+                if(!file.equals("irrelevantWords.txt") && !file.equals("commonWords.txt")){
+                    directoryValid = true;
+                    reportSuccess("correct number of profiles detected");
+                    break;
+                }
             }
         }catch (NullPointerException e){
             reportError("ERROR: Null pointer to profile directory");
@@ -294,14 +297,13 @@ public class MainWindowController {
         checkIfDirectoryIsValid();
     }
 
-    String[] cleanProfileFiles(File file){
-        String[] fullFileList = file.list();
-        String[] profileArr = new String[fullFileList.length - 1];
+    List<String> cleanProfileFiles(File directory){
+        String[] fullFileList = directory.list();
+        List<String> profileArr = new ArrayList<String>();
 
-        for(int i = 0, j = 0; i < fullFileList.length; i++){
-            if(!fullFileList[i].equals("IrrelevantWords.txt")) {
-                profileArr[j] = fullFileList[i];
-                j++;
+        for(String file: fullFileList){
+            if(!file.equals("IrrelevantWords.txt") && !file.equals("commonWords.txt")) {
+                profileArr.add(file);
             }
         }
         return  profileArr;
@@ -311,7 +313,7 @@ public class MainWindowController {
         ObservableList<Integer> limiterChoices = FXCollections.observableArrayList();
         LimitSelector.disableProperty().setValue(false);
 
-        for(int i = 0; i < profileCheckboxes.length; i++){
+        for(int i = 0; i < profileCheckboxes.size(); i++){
           limiterChoices.add(i+1);
         }
 
