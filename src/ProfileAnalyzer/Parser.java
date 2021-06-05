@@ -60,8 +60,8 @@ public class Parser {
         }
     }
 
-    public void saveIrrelevantWords(){
-        wordsAccessor.saveIrrelevantWords(irrelevantWords,directory);
+    public boolean saveIrrelevantWords(){
+        return wordsAccessor.saveIrrelevantWords(irrelevantWords,directory);
     }
 
     private String importProfile(String path){

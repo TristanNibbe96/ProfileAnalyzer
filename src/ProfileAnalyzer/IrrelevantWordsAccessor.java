@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IrrelevantWordsAccessor {
-    public void saveIrrelevantWords(List<String> words, String directory){
+    public boolean saveIrrelevantWords(List<String> words, String directory){
+        boolean savedSucessfully = true;
+
         try {
             FileWriter myWriter = new FileWriter(directory + "irrelevantWords.txt");
             for (String word: words){
@@ -13,8 +15,11 @@ public class IrrelevantWordsAccessor {
             }
             myWriter.close();
         } catch (IOException e) {
+            savedSucessfully = false;
             System.out.println("Unable to write to irrelevantWords file.");
         }
+
+        return savedSucessfully;
     }
 
     public List<String> loadIrrelevantWords(String directory) throws FileNotFoundException {
